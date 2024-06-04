@@ -17,7 +17,7 @@ namespace Pagos
             this.fecha = DateTime.Now;
         }
 
-        public abstract void ProcesarPago();
+        public abstract void ProcesarPago(float importe);
         public abstract void MostrarRecibo();
 
     }

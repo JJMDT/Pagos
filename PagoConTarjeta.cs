@@ -9,17 +9,21 @@ namespace Pagos
 {
     internal class PagoConTarjeta: Pago,IValidar
     {
-        public long nroTarjeta;
+        public string nroTarjeta;
+        public string nombre;
 
-        public PagoConTarjeta(float monto,long nroTarjeta) : base(monto)
+
+        public PagoConTarjeta(float monto, string nroTarjeta,string nombre) : base(monto)
         {
             this.monto = monto;
-            this.fecha= DateTime.Now;
+            this.fecha = DateTime.Now;
             this.nroTarjeta = nroTarjeta;
+            this.nombre = nombre;
 
 
         }
-        public override void ProcesarPago()
+      
+        public override void ProcesarPago(float importe)
         {
             if (Validar())
             {
@@ -36,11 +40,11 @@ namespace Pagos
         public override void MostrarRecibo()
         {
             Console.WriteLine("***** recibo *****");
-            Console.WriteLine(" fecha de transaccion : {0} \n importe abonado: ${1} \n medio de pago: {2}",fecha,monto,GetType());
+            Console.WriteLine(" fecha de transaccion : {0} \n importe abonado: ${1} \n medio de pago: {2}\n titular de la tarjeta: {3}",fecha,monto,GetType().Name,nombre);
         }
         public bool Validar()
         {
-            if(nroTarjeta == 0)
+            if(nroTarjeta == null)
             {
                 return false;
             }

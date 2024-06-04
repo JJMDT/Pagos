@@ -19,9 +19,9 @@ namespace Pagos
         }
         public override void MostrarRecibo()
         {
-            Console.WriteLine(" fecha de transaccion : {0} \n importe abonado: ${1} \n medio de pago: {2}", fecha, monto,GetType());
+            Console.WriteLine(" fecha de transaccion : {0} \n importe abonado: ${1} \n medio de pago: {2}", fecha, monto,GetType().Name);
         }
-        public override void ProcesarPago()
+        public override void ProcesarPago(float monto)
         {
             if (Validar())
             {
@@ -33,19 +33,19 @@ namespace Pagos
             }
             else
             {
-                Console.WriteLine("error");
+                Console.WriteLine("error: monto recibido insuficiente");
             }
         }
         public bool Validar()
         {
-            if(montoRecibido < monto)
+            if(montoRecibido >= monto)
             {
                 
-                return false;
+                return true;
             }else
             {
 
-            return true;
+            return false;
             }
         }
     }
